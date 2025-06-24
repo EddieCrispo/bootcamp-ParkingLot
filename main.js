@@ -10,7 +10,7 @@ const rl = readline.createInterface({
 });
 
 const lotA = new ParkingLot("Lot A", 3);
-const lotB = new ParkingLot("Lot B", 6);
+const lotB = new ParkingLot("Lot B", 3);
 const lotC = new ParkingLot("Lot C", 2);
 const manager = new ParkingManager([lotA, lotB, lotC]);
 
@@ -127,10 +127,12 @@ function handleMenu(option) {
     
     case '6':
         console.log(`
+        ----------------------------
         Pilih Strategi Parkir:
         1. First Available
         2. Highest Capacity
         3. Highest Free Space
+        ----------------------------
         `);
         rl.question("Pilih strategi: ", choice => {
             if (choice === '1') {

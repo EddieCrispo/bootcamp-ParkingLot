@@ -2,7 +2,7 @@
 export default class ParkingManager {
     constructor(parkingLots) {
         this.parkingLots = parkingLots;
-        // Implement strategy for Story 7
+        // Implement strategy for Story 7 & Story 8
         this.strategy = "first-available"; // default strategy
     }
 

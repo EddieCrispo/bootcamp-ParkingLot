@@ -56,12 +56,6 @@ export default class ParkingLot {
         
         return ticket;
 
-        // // Make ticket
-        // const ticket = new Ticket(car, this.id)
-
-        // // console.log(ticket, "==> Ini ticket Mobil");
-        // return ticket
-
     }
 
     // For car exit

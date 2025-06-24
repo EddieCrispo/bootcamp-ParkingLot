@@ -1,12 +1,6 @@
 
 // Class for Ticket
 export default class Ticket {
-    // constructor(car, location) {
-    // this.numberPlate = car.getPlateNumber();
-    // this.timeStamp = new Date();
-    // this.merk = car.getCarBrand();
-    // this.location = location;
-    // }
 
     constructor(car, location) {
     this.numberPlate = car.getPlateNumber();
