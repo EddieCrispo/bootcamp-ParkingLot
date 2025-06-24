@@ -10,7 +10,7 @@ const rl = readline.createInterface({
 });
 
 const lotA = new ParkingLot("Lot A", 3);
-const lotB = new ParkingLot("Lot B", 2);
+const lotB = new ParkingLot("Lot B", 6);
 const lotC = new ParkingLot("Lot C", 2);
 const manager = new ParkingManager([lotA, lotB, lotC]);
 
@@ -33,14 +33,15 @@ const cars = [
 // === Menu ===
 function showMenu() {
   console.log(`
-========= MENU =========
+============= MENU =============
 1. Tambah Mobil Baru
 2. Parkirkan Mobil
 3. Lihat Status Parkir
 4. Lihat Tiket
 5. Keluarkan Mobil
+6. Pilih Strategi Parkir
 0. Keluar
-========================
+================================
   `);
   rl.question("Pilih opsi: ", handleMenu);
 }
@@ -120,6 +121,27 @@ function handleMenu(option) {
     case '5':
         rl.question("Masukkan plat mobil yang ingin keluar: ", plate => {
             manager.unparkCar(plate.trim());
+            showMenu();
+        });
+        break;
+    
+    case '6':
+        console.log(`
+        Pilih Strategi Parkir:
+        1. First Available
+        2. Highest Capacity
+        3. Highest Free Space
+        `);
+        rl.question("Pilih strategi: ", choice => {
+            if (choice === '1') {
+            manager.setStrategy("first-available");
+            } else if (choice === '2') {
+            manager.setStrategy("highest-capacity");
+            } else if (choice === '3') {
+            manager.setStrategy("highest-free-space");
+            } else {
+            console.log("🚫 Pilihan tidak valid.");
+            }
             showMenu();
         });
         break;
