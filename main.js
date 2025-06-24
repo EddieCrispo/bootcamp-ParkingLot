@@ -10,8 +10,8 @@ const rl = readline.createInterface({
 });
 
 const lotA = new ParkingLot("Lot A", 3);
-const lotB = new ParkingLot("Lot B", 3);
-const lotC = new ParkingLot("Lot C", 2);
+const lotB = new ParkingLot("Lot B", 2);
+const lotC = new ParkingLot("Lot C", 5);
 const manager = new ParkingManager([lotA, lotB, lotC]);
 
 // Empty Cars
@@ -39,7 +39,7 @@ function showMenu() {
 3. Lihat Status Parkir
 4. Lihat Tiket
 5. Keluarkan Mobil
-6. Pilih Strategi Parkir
+6. Pilih Strategi Parkir (Current Strategy : ${manager.strategy})
 0. Keluar
 ================================
   `);

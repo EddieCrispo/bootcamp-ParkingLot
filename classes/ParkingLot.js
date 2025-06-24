@@ -37,22 +37,21 @@ export default class ParkingLot {
             throw new Error(`Mobil dengan plat ${car.getPlateNumber()} sudah terparkir.`);
         }
 
-        // Put car in Parking Spot
-        this.parkingSpots.set(car.getPlateNumber(), car.getCarInfo())
+        // Put car in Parking Spot and Make Ticket
+        const ticket = new Ticket(car, this.id);
+        this.parkingSpots.set(car.getPlateNumber(), ticket); // Save Ticket as parked car info
         console.log(`Mobil ${car.getPlateNumber()} sudah parkir di ${this.id}`);
+        
+        this.tickets.set(car.getPlateNumber(), ticket); // Save the ticket
+        console.log(`Ticket dibuat untuk ${car.getPlateNumber()}:`, ticket.getSummary());
 
         // Output slot yang tersisa di Lot x
         if (this.getAvailableSpots() == 0){
             console.log(`Slot di ${this.id} sudah habis.`);
         } else {
-        console.log(`Tersisa ${this.getAvailableSpots()} slot di ${this.id}`);
+            console.log(`Tersisa ${this.getAvailableSpots()} slot di ${this.id}`);
         }
         // console.log(`Tersisa ${this.getAvailableSpots()} slot di ${this.id}`);
-        
-        // Make Ticket
-        const ticket = new Ticket(car, this.id);
-        this.tickets.set(car.getPlateNumber(), ticket); // Save the ticket
-        console.log(`Ticket dibuat untuk ${car.getPlateNumber()}:`, ticket.getSummary());
         
         return ticket;
 
@@ -89,8 +88,8 @@ export default class ParkingLot {
     // Print parked cars
     printParkedCars() {
         console.log(`\n================ Daftar Mobil Terparkir di ${this.id} ================`);
-        for (const car of this.parkingSpots.values()) {
-            console.log(`Plate: ${car.plateNumber}, Make: ${car.carBrand}, Time: ${new Date(car.timestamp).toLocaleString()}`);
+        for (const ticket of this.parkingSpots.values()) {
+            console.log(`Plate: ${ticket.numberPlate}, Make: ${ticket.carBrand}, Time: ${new Date(ticket.entryTime).toLocaleString()}`);
         }
         
         if (this.getAvailableSpots() == 0){
